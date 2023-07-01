@@ -1,3 +1,6 @@
+let totalWins = 0;
+let totalLosses = 0;
+
 function getComputerChoice() {
     let choiceNumber = Math.floor(Math.random() * 3) + 1;
     let choice = "";
@@ -30,9 +33,6 @@ function playRound(playerChoice) {
                 case "scissors":
                     return "player wins";
                     break;
-                default:
-                    return "please enter rock, paper, or scissors"
-                    break;
             }
             break;
         case "paper": 
@@ -45,9 +45,6 @@ function playRound(playerChoice) {
                     break;
                 case "scissors":
                     return "computer wins";
-                    break;
-                default:
-                    return "please enter rock, paper, or scissors"
                     break;
             }
             break;
@@ -62,11 +59,41 @@ function playRound(playerChoice) {
                 case "scissors":
                     return "tie";
                     break;
-                default:
-                    return "please enter rock, paper, or scissors"
-                    break;
             }
             break;
+        
+            default:
+                console.log("please enter rock, paper, or scissors");
+                return playRound(prompt("What is your choice? (Rock, Paper, Scissors): "));
+                break;
+    }
+}
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let userChoice = prompt("What is your choice? (Rock, Paper, Scissors): ");
+        let result = playRound(userChoice);
+        console.log(result);
+        switch(result) {
+            case "computer wins":
+                computerScore++;
+                break;
+            case "player wins":
+                playerScore++;
+                break;
+        }
+    }
+    console.log("You won " + playerScore + " times. The computer won " + computerScore + " times.")
+    if (playerScore > computerScore) {
+        console.log("Congratulations! You won!");
+    }
+    else if (computerScore > playerScore) {
+        console.log("Sorry, you lost.");
+    }
+    else {
+        console.log("Tied!");
     }
 }
 
