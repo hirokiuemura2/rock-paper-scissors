@@ -108,7 +108,7 @@ const results = document.createElement('div');
 results.classList.add('results');
 results.style.textAlign = "center";
 results.style.fontSize = "35px";
-results.style.margin = "20px";
+results.style.margin = "20px 0  40px 0";
 results.textContent = "Choose Rock, Paper, or Scissors";
 // results.setAttribute('style', 'font-size: 50px; text-align: center');
 const container = document.querySelector('body');
