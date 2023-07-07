@@ -1,13 +1,19 @@
 body {
     font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow:scroll;
 }
 
 .buttons {
     display: flex;
     height: fit-content;
-    justify-content: space-evenly;
+    justify-content: space-around;
     gap: 15%;
-    padding: 0 100px;
+    padding: 0 50px;
+    flex: 1 0 auto;
+    margin: 1px;
 }
 
 button {
@@ -17,13 +23,20 @@ button {
     width: fit-content;
     padding: 10px;
     flex-grow: 1;
+    max-height:20vw;
     flex-basis: 0;
-    min-width: 100px;
-    height: fit-content;
+    min-width:min-content;
+    min-height: 150px;
 }
 
 button img {
-    height: 110px;
+    max-height: 110px;
+    width:90%;
+    min-height: 90%;
+}
+
+button div {
+    justify-self: flex-end;
 }
 
 .scores {
@@ -31,6 +44,8 @@ button img {
     display: flex;
     justify-content: space-around;
     font-size: 40px;
+    flex: 1 2 auto;
+    align-items: center;
 }
 
 .score {
@@ -39,4 +54,9 @@ button img {
     align-items: center;
     background-color: lightblue;
     padding: 20px;
+    margin: 10px;
+}
+
+.label {
+    text-align: center;
 }

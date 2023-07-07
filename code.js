@@ -107,6 +107,10 @@ const buttons = document.querySelectorAll('button');
 const results = document.createElement('div');
 results.classList.add('results');
 results.style.textAlign = "center";
+results.style.fontSize = "35px";
+results.style.margin = "20px";
+results.textContent = "Choose Rock, Paper, or Scissors";
+// results.setAttribute('style', 'font-size: 50px; text-align: center');
 const container = document.querySelector('body');
 container.appendChild(results);
 
@@ -129,7 +133,7 @@ buttons.forEach((button) => {
     button.addEventListener('click',(e) => {
         let text = button.querySelector('div').textContent;
         let winner = playRound(text);
-        results.innerText += winner + "\n";
+        results.textContent = winner;
         if (winner == "player wins") {
             totalWins++;
         } else if (winner == "computer wins") {
