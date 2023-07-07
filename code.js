@@ -19,6 +19,7 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice) {
+    console.log(playerChoice);
     playerChoice = playerChoice.toLowerCase();
     let computerChoice = getComputerChoice().toLowerCase();
     switch (playerChoice) {
@@ -62,41 +63,89 @@ function playRound(playerChoice) {
             }
             break;
         
-            default:
-                console.log("please enter rock, paper, or scissors");
-                return playRound(prompt("What is your choice? (Rock, Paper, Scissors): "));
-                break;
+        // default:
+        //     console.log("please enter rock, paper, or scissors");
+        //     return playRound(prompt("What is your choice? (Rock, Paper, Scissors): "));
+        //     break;
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let userChoice = prompt("What is your choice? (Rock, Paper, Scissors): ");
-        let result = playRound(userChoice);
-        console.log(result);
-        switch(result) {
-            case "computer wins":
-                computerScore++;
-                break;
-            case "player wins":
-                playerScore++;
-                break;
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     for (let i = 0; i < 5; i++) {
+//         let userChoice = prompt("What is your choice? (Rock, Paper, Scissors): ");
+//         let result = playRound(userChoice);
+//         console.log(result);
+//         switch(result) {
+//             case "computer wins":
+//                 computerScore++;
+//                 break;
+//             case "player wins":
+//                 playerScore++;
+//                 break;
+//         }
+//     }
+//     console.log("You won " + playerScore + " times. The computer won " + computerScore + " times.")
+//     if (playerScore > computerScore) {
+//         console.log("Congratulations! You won!");
+//     }
+//     else if (computerScore > playerScore) {
+//         console.log("Sorry, you lost.");
+//     }
+//     else {
+//         console.log("Tied!");
+//     }
+// }
+
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+const buttons = document.querySelectorAll('button');
+
+const results = document.createElement('div');
+results.classList.add('results');
+results.style.textAlign = "center";
+const container = document.querySelector('body');
+container.appendChild(results);
+
+let resetGame = () => {
+    totalLosses = totalWins = 0;
+    let buttons = document.querySelector('.buttons');
+    buttons.addEventListener('click',() => {
+        results.innerText="";
+    }, {
+        once:true, capture:true
+    });
+}
+let update = function() {
+    let scores = document.querySelectorAll('.count');
+    scores[0].textContent = totalWins;
+    scores[1].textContent = totalLosses;
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click',(e) => {
+        let text = button.querySelector('div').textContent;
+        let winner = playRound(text);
+        results.innerText += winner + "\n";
+        if (winner == "player wins") {
+            totalWins++;
+        } else if (winner == "computer wins") {
+            totalLosses++;
         }
-    }
-    console.log("You won " + playerScore + " times. The computer won " + computerScore + " times.")
-    if (playerScore > computerScore) {
-        console.log("Congratulations! You won!");
-    }
-    else if (computerScore > playerScore) {
-        console.log("Sorry, you lost.");
-    }
-    else {
-        console.log("Tied!");
-    }
-}
-
+        update();
+        if (totalWins == 5) {
+            results.innerText = "Player Wins!";
+            resetGame();
+        }
+        else if (totalLosses == 5) {
+            results.innerText = "Computer Wins!";
+            resetGame();
+        }
+    }, {capture: true})
+});
 
 // let rocks = 0;
 // let paper = 0;

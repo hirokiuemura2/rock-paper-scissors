@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="code.js"></script>
+    <script src="code.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="buttons">
+        <button id="rock">
+            <img src="rock.jpeg" alt="An image of a rock">
+            <div>Rock</div>
+        </button>
+        <button id="paper">
+            <img src="paper.png" alt="An image of a piece of paper">
+            <div>Paper</div>
+        </button>
+        <button id="scissors">
+            <img src="scissors.png" alt="An image of a pair of scissors">
+            <div>Scissors</div>
+        </button>
+    </div>
+    <div class="scores">
+        <div class="score">
+            <div>Player's Score</div><div class="count">0</div>
+        </div>
+        <div class="score">
+            <div>Computer's Score</div><div class="count">0</div>
+        </div>
+    </div>
 </body>
 </html>
